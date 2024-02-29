@@ -1,5 +1,5 @@
 class Domain(list):
-    """Class used to control possible values for variables."""
+    """Domain refers to potential values of a variable."""
 
     def __init__(self, set):
         list.__init__(self, set)

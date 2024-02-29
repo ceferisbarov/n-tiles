@@ -1,11 +1,8 @@
-"""Module containing the code for the problem solvers."""
-
 from typing import List
 
 class BacktrackingSolver:
-    """Problem solver with backtracking capabilities."""
 
-    def getSolutionIter(self, domains: dict, constraints: List[tuple], vconstraints: dict):  # noqa: D102
+    def getSolutionIter(self, domains: dict, vconstraints: dict):
         assignments = {}
 
         queue = []
@@ -69,12 +66,12 @@ class BacktrackingSolver:
             # Push state before looking for next variable.
             queue.append((variable, values, pushdomains))
 
-    def getSolution(self, domains: dict, constraints: List[tuple], vconstraints: dict):  # noqa: D102
+    def getSolution(self, domains: dict, constraints: List[tuple], vconstraints: dict):
         iter = self.getSolutionIter(domains, constraints, vconstraints)
         try:
             return next(iter)
         except StopIteration:
             return None
 
-    def getSolutions(self, domains: dict, constraints: List[tuple], vconstraints: dict):  # noqa: D102
-        return list(self.getSolutionIter(domains, constraints, vconstraints))
+    def getSolutions(self, domains: dict, constraints: List[tuple], vconstraints: dict):
+        return list(self.getSolutionIter(domains, vconstraints))

@@ -2,7 +2,7 @@
 
 import copy
 
-from src.solvers import BacktrackingSolver
+from src.backtracking import BacktrackingSolver
 from src.domain import Domain
 from src.constraints import Constraint
 from typing import Optional, Union, Sequence, Callable
@@ -66,7 +66,7 @@ class Problem:
         domains, constraints, vconstraints = self._getArgs()
         if not domains:
             return None
-        return self._solver.getSolution(domains, constraints, vconstraints)
+        return self._solver.getSolution(domains, vconstraints)
     
     def getSolutions(self):
         """Find and return all solutions to the problem."""

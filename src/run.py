@@ -4,7 +4,8 @@ import argparse
 import numpy as np
 
 from src.problem import Problem
-from src.solvers import BacktrackingSolver
+from src.backtracking import BacktrackingSolver
+from src.minconflict import MinConflictsSolver
 from src.utils import get_values, is_full_block, is_outer_boundary, is_el_shape, pprint
 
 parser = argparse.ArgumentParser()
@@ -36,7 +37,10 @@ with open(indir, "r") as f:
 		shapes[key] = int(value)
 
 matrix = np.array(matrix)
-problem = Problem(solver=BacktrackingSolver())
+if N <= 8:
+	problem = Problem(solver=BacktrackingSolver())
+else:
+	problem = Problem(solver=MinConflictsSolver())
 
 def shape_count_constraint(*args):
 	fb = 0
@@ -77,7 +81,13 @@ for i in range(0,N,4):
 problem.addConstraint(shape_count_constraint, problem._variables.keys())
 problem.addConstraint(target_constraint, problem._variables.keys())
 
-with open(outdir, 'w') as f:
-	for sol in problem.getSolutions():
-		json.dump(sol, f)
+if N <= 8:
+	with open(outdir, 'w') as f:
+		solutions = problem.getSolutions()
+		for solution in solutions:
+			json.dump(solution, f)
+			f.write('\n')
+else:
+	with open(outdir, 'w') as f:
+		json.dump(problem.getSolution(), f)
 		f.write('\n')

@@ -34,7 +34,7 @@ class Constraint:
         """Preprocess variable domains."""
 
         if len(variables) == 1:
-            variable = variables[0]
+            variable = list(variables)[0]
             domain = domains[variable]
             for value in domain[:]:
                 if not self(variables, domains, {variable: value}):
