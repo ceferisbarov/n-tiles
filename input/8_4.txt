@@ -1,0 +1,20 @@
+# Tiles Problem, generated at: Thu Feb 29 13:47:46 AZT 2024
+# Landscape
+  1 4 2       3 
+4 4 1 2 2 4 1 3 
+2 1 2   1   4 1 
+2 1 3 3   2 2 3 
+3 2 1 3   2   3 
+1 4 4 4 4   4 3 
+1 2 4 3 4 1 4 2 
+1 1   2   4 1 3 
+
+# Tiles: 
+{OUTER_BOUNDARY=1, FULL_BLOCK=1, EL_SHAPE=2}
+
+# Targets: 
+1:5
+2:4
+3:3
+4:7
+
